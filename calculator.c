@@ -1,44 +1,50 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
     
-char operator = '\0';
-double num1 = 0.0;
-double num2 = 0.0;
-double result = 0.0;
+    char znak;
+    double l1, l2, wynik;
 
-    printf("Enter the first number: ");
-    scanf("%lf", &num1);
+    do
+    {   fflush(stdin);
+        printf("Podaj dzialanie (+, -, *, /): ");
+        znak = getchar();
+    } while ((znak != '+') && (znak != '-') && (znak != '*') && (znak != '/'));
 
-    printf("Enter an operator (+, -, *, /): ");
-    scanf(" %c", &operator);
+    do
+    {
+        fflush(stdin);
+        printf("Podaj pierwsza liczbe: ");
+    }while(scanf("%lf", &l1) != 1);
+    
+    do{
+        fflush(stdin);
+        printf("Podaj druga liczbe: ");
+    }while(scanf("%lf", &l2) != 1);
 
-    printf("Enter the second number: ");
-    scanf("%lf", &num2);
-
-    switch (operator) {
+    switch(znak)
+    {
         case '+':
-            result = num1 + num2;
+            wynik = l1 + l2;
             break;
         case '-':
-            result = num1 - num2;
+            wynik = l1 - l2;
             break;
         case '*':
-            result = num1 * num2;
+            wynik = l1 * l2;
             break;
         case '/':
-            if (num2 != 0) {
-                result = num1 / num2;
-            } else {
-                printf("Error: Division by zero is not allowed.\n");
+            if(l2 != 0)
+                wynik = l1 / l2;
+            else
+            {
+                printf("Blad: dzielenie przez zero!\n");
                 return 1;
             }
             break;
-        default:
-            printf("Error: Invalid operator.\n");
-            return 1;
     }
-    printf("Result: %.2lf",result);
-
+    printf("Wynik: %.2lf\n", wynik);
+    
  return 0;
 }
